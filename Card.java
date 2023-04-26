@@ -1,46 +1,42 @@
 package cardGame;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
+import java.util.List;
+
 public class Card extends cardMain {
-    public static final int cardNum = 52;
-    public Card() {
-        ArrayList<String> Value = new ArrayList<>();
-        Value.add("Ace");
-        Value.add("Two");
-        Value.add("Three");
-        Value.add("Four");
-        Value.add("Five");
-        Value.add("Six");
-        Value.add("Seven");
-        Value.add("Eight");
-        Value.add("Nine");
-        Value.add("Ten");
-        Value.add("Jack");
-        Value.add("Queen");
-        Value.add("King");
+    // string order values
+    private String Value, Suit;
 
-        ArrayList<String> Suit = new ArrayList<>();
-        Suit.add("Hearts");
-        Suit.add("Diamonds");
-        Suit.add("Clubs");
-        Suit.add("Spades");
-        // String[] Suit = {"Hearts", "Diamonds", "Clubs", "Spades"};
-
-        Card[] deck = new Card[cardNum];
-
-        for(int count = 0; count< deck.length; count++) {
-            deck[count] = new Card(Value.get(count % 13), Suit.get(count / 13));
-            System.out.println(deck[count]);
-        } // end for loop
-        System.out.println("this is working");
-        ///
-        //         List<Card> deckMix = Arrays.asList(deck);
-        //             Collections.shuffle(deckMix);
-        //             deckMix.toArray(new Card[0]);
-        //             System.out.print(deckMix);
-        // /
-
-    } // end of card method
-} // end of class
+    // card constructor
+    public Card(String value, String suit) {
+        setValue(value);
+        setSuit(suit);
+    }
+    // setting values for card numbers
+    public void setValue(String value) {
+        List<String> checkValueNames = valueNames();
+        if(checkValueNames.contains(Value)) {
+            Value = value;
+        }
+    }
+    // setting values for suits
+    public void setSuit(String suit) {
+        List<String> checkSuitNames = suitNames();
+        if(checkSuitNames.contains(Suit)) {
+            Suit = suit;
+        }
+    }
+    // correcting print of cards with spaces
+    public String toString() {
+        return String.format("%s of %s", Value, Suit);
+    }
+    // method that returns the values for cards
+    public static List<String> valueNames() {
+        return Arrays.asList("Ace", "Two", "Three", "Four", "Five", "Six", "Seven",
+                "Eight", "Nine", "Ten", "Jack", "Queen", "King");
+    }
+    // method that returns suit values for cards
+    public static List<String> suitNames() {
+        return Arrays.asList("Hearts", "Diamonds", "Clubs", "Spades");
+    }
+}
 

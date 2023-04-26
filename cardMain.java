@@ -4,7 +4,11 @@ package cardGame;// Meghan Flaherty
 public class cardMain {
     public static void main(String[] args) {
 
-       new Card();
-       new cardManager();
+        cardManager deck = new cardManager();
+        System.out.println(deck);
+        new Card();
+        new cardManager();
+       
+
     }
 }
